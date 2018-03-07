@@ -42,6 +42,34 @@ for timefor=1:times
          break;%if all the elements in the matrix toggled dosen't work more effective then break
      end
 end
+if snrbegin <100
+    %decide the number of secondary peaks i.e. 2 means we should toggle 3
+    %elements each step 
+    %need to define a special function to choose combine range
+    totalelsements=row*line;
+    for rangenum=2:5 %  totalelsements
+%     maxtimes=nchoosek(totalelsements,rangenum);%combine number of matix
+    totalmatrix=combntns(1:totalelsements,rangenum);
+    maxtimes=size(totalmatrix,1);
+          for rowi=1:maxtimes %rows  of combine array 
+                for j=1:rangenum
+%             totalmatrix(i,j)
+            code(1,totalmatrix(rowi,j))=invers01(code(1,totalmatrix(rowi,j)));
+                end
+               snrtemp=jj(code);
+              if snrtemp>snrbegin
+                snrbegin=snrtemp;
+              else
+                 for j=1:rangenum
+            code(1,totalmatrix(rowi,j))=invers01(code(1,totalmatrix(rowi,j)));
+                 end         
+              end
+             if snrbegin>17  %search Inf of PSF
+                break;
+             end
+    end
+    end
+end
 
 a=code;
                
