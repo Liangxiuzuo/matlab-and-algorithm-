@@ -19,8 +19,8 @@ for i=1:x0
 end
 
 snr=(Nmax-noiseav)*sqrt(x0*y0-1)/sqrt(sumv);
-
-
+% 
+% snr=Nmax;
 % if x<=8
 %     xmin=1;
 %     xmax=x+7;
